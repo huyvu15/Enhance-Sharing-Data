@@ -50,6 +50,12 @@ const AppLayout = ({ signOut, user, children }: AppLayoutProps) => {
           text: 'Documentation',
           type: 'link',
         },
+        {
+          external: true,
+          href: 'https://github.com/huyvu15',
+          text: 'Author',
+          type: 'link',
+        },
       ]}
       user={navUser}
       onSignout={onSignOut}
