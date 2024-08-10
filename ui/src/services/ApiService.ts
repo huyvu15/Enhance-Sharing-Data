@@ -45,6 +45,7 @@ export class ApiService {
 
     if (submission.source === 'upload') {
       const file = submission.uploadedFiles[0];
+      // console.log(typeof(file))
 
       // Step 1: get S3 pre-signed upload url from API
       const { uploadUrl, fileId: generatedFileId } = await this.api.get<UploadResponse>(
@@ -75,6 +76,35 @@ export class ApiService {
     // clear cache
     delete this.cache.ownedFiles;
   }
+
+  public async upFile(file: File ): Promise<void> {
+    // let fileId: string;
+
+    
+      // Step 1: get S3 pre-signed upload url from API
+      const { uploadUrl, fileId: generatedFileId } = await this.api.get<UploadResponse>(
+        `/upload/${file.name}`
+      );
+
+      // Step 2: upload file to S3
+      await this.s3.uploadFileToS3(file, uploadUrl);
+
+      // fileId = generatedFileId;
+ 
+
+    // Step 3: post to api
+    // const request: ShareApiRequest = {
+    //   recipients: submission.recipients,
+    // };
+    // request.expiryDate = '20/12/2024';
+    // request.downloadLimit = 100;
+
+    // await this.api.post(`/share/${fileId}`, request);
+
+    // clear cache
+    delete this.cache.ownedFiles;
+  }
+
 
   public async removeFiles(files: OwnedFile[]): Promise<void> {
     for (let i = 0; i < files.length; i++) {

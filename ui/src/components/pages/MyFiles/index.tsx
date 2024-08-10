@@ -50,6 +50,35 @@ const MyFiles: FunctionComponent = () => {
   const onCreateClick = () => {
     navigate('/share');
   };
+  
+
+  const onUploadFile = async () =>  {
+    // navigate('/upload');
+    const inputElement: HTMLInputElement = document.createElement('input');
+    inputElement.type = 'file';
+    inputElement.click();
+    inputElement.addEventListener('change', (event: Event) => {
+      // Lấy danh sách các file được chọn
+      const files: FileList | null = (event.target as HTMLInputElement).files;
+      
+      // Kiểm tra xem người dùng đã chọn file hay chưa
+      if (files && files.length > 0) {
+          const selectedFile: File = files[0]; // Chọn file đầu tiên trong danh sách
+          const formData = new FormData();
+          formData.append('file', selectedFile);
+          const api = ApiService.getInstance();
+          // await api.upFile(selectedFile);
+          // api.
+
+          console.log(selectedFile);
+          console.log(files);
+          // Hiển thị tên file đã chọn (hoặc xử lý file theo nhu cầu của bạn)
+         
+      }
+  });
+
+    // const
+  };
 
   const handleDelete = async () => {
     setIsDeleteProcessing(true);
@@ -118,19 +147,24 @@ const MyFiles: FunctionComponent = () => {
 
   return (
     <ContentLayout
-      header={
-        <Header
-          variant="h1"
-          actions={
-            <Button onClick={onCreateClick} variant="primary">
-              Share a file
-            </Button>
-          }
-        >
-          My Files
-        </Header>
+  header={
+    <Header
+      variant="h1"
+      actions={
+        <>
+          <Button onClick={onCreateClick} variant="primary">
+            Share a file
+          </Button>
+          <Button onClick={onUploadFile} variant="primary">
+            Upload to S3
+          </Button>
+        </>
       }
     >
+      My Files
+    </Header>
+  }
+>
       <Table
         trackBy="fileId"
         columnDefinitions={columnDefinitions}

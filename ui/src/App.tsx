@@ -31,6 +31,8 @@ const App = ({ user, signOut }: WithAuthenticatorProps) => {
             <Route path="/files" element={<MyFiles />} />
             <Route path="/download/:fileId" element={<Download />} />
             <Route path="/" element={<Home />} />
+            {/* <Route path="/upload" element={<Home />} /> */}
+
           </Routes>
         </AppLayout>
       </NorthStarThemeProvider>

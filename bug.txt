@@ -1,0 +1,1 @@
+aws quicksight update-user --aws-account-id 975050197456 --namespace default --role ADMIN_PRO --user-name <user-name> --email <email> 

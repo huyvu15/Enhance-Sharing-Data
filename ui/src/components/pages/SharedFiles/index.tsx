@@ -25,7 +25,7 @@ const SharedFiles: FunctionComponent = () => {
   const init = async () => {
     setBreadcrumb([
       { text: 'Home', href: '/' },
-      { text: 'Files shared with me', href: '/shared-files' },
+      { text: 'Shared with me', href: '/shared-files' },
     ]);
 
     const sharedFiles = await api.getSharedFiles();

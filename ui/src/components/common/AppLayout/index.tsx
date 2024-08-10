@@ -38,11 +38,11 @@ const AppLayout = ({ signOut, user, children }: AppLayoutProps) => {
 
   return (
     <AppLayoutBase
-      title="Serverless File Sharing"
+      title="File Share System"
       navigationItems={[
         { href: '/', text: 'Home', type: 'link' },
         { href: '/files', text: 'My files', type: 'link' },
-        { href: '/shared-files', text: 'Files shared with me', type: 'link' },
+        { href: '/shared-files', text: 'Shared with me', type: 'link' },
         { type: 'divider' },
         {
           external: true,
@@ -51,11 +51,11 @@ const AppLayout = ({ signOut, user, children }: AppLayoutProps) => {
           type: 'link',
         },
         {
-          external: true,
+          external: true  ,
           href: 'https://github.com/huyvu15',
           text: 'Author',
           type: 'link',
-        },
+        },  
       ]}
       user={navUser}
       onSignout={onSignOut}
