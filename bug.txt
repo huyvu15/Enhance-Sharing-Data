@@ -1,1 +1,20 @@
+Quicksight: run at Cloud Shell
+
 aws quicksight update-user --aws-account-id 975050197456 --namespace default --role ADMIN_PRO --user-name <user-name> --email <email> 
+
+Cognito: run at ui folder
+
+aws ssm get-parameter --name $(aws cloudformation describe-stacks --stack-name serverless-file-share --query "Stacks[0].Outputs[?OutputKey=='WebConfig'].OutputValue" --output text) --query "Parameter.Value" --output text > public/config.js
+
+cdk: run at cdk folder 
+
+cdk init
+
+cdk deploy
+
+cdk destroy
+
+
+ui:
+npm run start
+npm run dev
